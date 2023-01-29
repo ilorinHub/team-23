@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "Trail",
+    "slug": "Trail",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/i.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/spl.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/i.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.ibrahimdevv.Trail"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "167248fc-79f2-47e8-acb5-d01b176ce261"
+      }
+    }
+  }
+}
