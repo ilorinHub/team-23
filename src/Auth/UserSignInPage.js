@@ -208,7 +208,7 @@ const UserSignInPage = ({ navigation }) => {
                 textAlign: "center",
               }}
             >
-              CLICK TO CONTINUE
+              Log in
             </Text>
           </TouchableOpacity>
         </View>
@@ -219,17 +219,9 @@ const UserSignInPage = ({ navigation }) => {
 
               textAlign: "center",
             }}
-          >
-            By clicking continue you agree to the
-          </Text>
-          <Text> </Text>
-          <TouchableOpacity
-          // onPress={() => {
-          //   Linking.openURL(
-          //     "https://docs.google.com/document/d/15EI55EwKMagzsrdlWCgOkvQHabm0S6YXoqwWvN_RmEU/edit?usp=sharing"
-          //   );
-          // }}
-          >
+          ></Text>
+
+          <TouchableOpacity>
             <Text
               style={{
                 fontSize: 11,
@@ -237,7 +229,7 @@ const UserSignInPage = ({ navigation }) => {
                 textAlign: "center",
               }}
             >
-              terms and conditions
+              Powered by KSG
             </Text>
           </TouchableOpacity>
         </View>

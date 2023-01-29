@@ -23,11 +23,11 @@ const Header = ({
           style={{ height: imgtype ? 28 : 20, width: imgtype ? 28 : 20 }}
         />
       </TouchableOpacity>
-      <View style={{ backgroundColor: "#008751", borderRadius: 50 }}>
+      <View>
         <Text
           style={[
             styles.headerTitle,
-            { color: "white", paddingHorizontal: 10, paddingVertical: 5 },
+            { color: "black", paddingHorizontal: 10, paddingVertical: 5 },
           ]}
         >
           {title ? title : "Trail System"}

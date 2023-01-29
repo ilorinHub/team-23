@@ -81,7 +81,7 @@ const Login = ({ navigation }) => {
             <View style={styles.topSection}>
               <Text style={styles.topText}>Welcome! </Text>
               <Text style={styles.capText}>
-                Enter your credentials to continue
+                Welcome Back! Please enter your login information to continue.
               </Text>
             </View>
             <View style={styles.Inputs}>
@@ -117,7 +117,7 @@ const Login = ({ navigation }) => {
               {notification}
             </Text>
             <TouchableOpacity style={styles.btn} onPress={handleSignIn}>
-              <Text style={styles.btnTxt}>Sign In</Text>
+              <Text style={styles.btnTxt}>Continue</Text>
             </TouchableOpacity>
           </View>
         </>

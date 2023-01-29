@@ -12,7 +12,12 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../../../Function/Context";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  serverTimestamp,
+} from "firebase/firestore";
 
 import {
   getDownloadURL,
@@ -26,7 +31,7 @@ import {
   pickImage,
   uploadImgetoFireStorage,
 } from "../../../Utils/DisplayImage";
-import { db } from "../../../Utils/Firebase";
+import { auth, db } from "../../../Utils/Firebase";
 
 import Header from "../../Components/Header";
 import SelectDropdown from "react-native-select-dropdown";
@@ -43,12 +48,59 @@ const SendMemo = () => {
     typeOfMemo,
     Departments,
     currentAdmin,
-    UsersFromDB,
+    currentAdminF,
+    // UsersFromDB,
     CurrentUserfromDb,
-    getUsersFromDB,
+    // getUsersFromDB,
 
     getMemofromDB,
   } = useGlobalContext();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        currentAdminF(authUser);
+      } else {
+        currentAdminF(null);
+      }
+    });
+  }, []);
+
+  const [UsersFromDB, UsersFromDBF] = useState([]);
+
+  function getUsersFromDB() {
+    loaderF(true);
+
+    const unsub = onSnapshot(
+      collection(db, "Users"),
+
+      (snapshot) => {
+        let list = [];
+
+        snapshot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+
+        if (!list || list.length === 0) {
+        } else {
+          UsersFromDBF(list);
+
+          loaderF(false);
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    return () => {
+      unsub();
+    };
+  }
+
+  useEffect(() => {
+    getMemofromDB();
+    getUsersFromDB();
+  }, []);
 
   useEffect(() => {
     getMemofromDB();
@@ -124,7 +176,7 @@ const SendMemo = () => {
           dateofMemo: DateofMemo,
           description: Description,
 
-          img: selectedImage ? url : null,
+          img: image,
           memoTitle: MemoTitle,
           recipientMinistry: recipientMinistry,
           recipientDepartment: recipientDepartment,
@@ -425,7 +477,7 @@ const styles = StyleSheet.create({
   Inputs: {
     marginTop: 20,
     flex: 1,
-    justifyContent: "center",
+    justifyDescription: "center",
   },
   Input: {
     padding: 5,
@@ -442,7 +494,7 @@ const styles = StyleSheet.create({
     borderColor: "#aaa",
 
     alignItems: "baseline",
-    justifyContent: "flex-start",
+    justifyDescription: "flex-start",
 
     textAlignVertical: "top",
   },
@@ -450,7 +502,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     backgroundColor: "#008751",
     alignItems: "center",
-    justifyContent: "center",
+    justifyDescription: "center",
     borderRadius: 10,
     width: "100%",
     marginVertical: 20,
